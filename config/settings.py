@@ -9,9 +9,8 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
-import django_heroku
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -30,10 +29,11 @@ SECRET_KEY = 'django-insecure-ov#r^^&xv&^0vmc(zj&h_t^$*52@8jicn=%*z*@s-=li!s_p@=
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+X_FRAME_OPTIONS='*'
 CORS_ALLOW_ALL_ORIGINS = True
-#CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://forum-prod-frontend.herokuapp.com']
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000']
 
-# Application definition
+# Application definitionsource 
 
 INSTALLED_APPS = [
     # To allow CORS (Cross-origin resource sharing)
@@ -89,27 +89,27 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # # Heroku Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd8k2bp1mo7irvb',
-        'USER': 'wbowlfevpnqdyb',
-        'PORT': 5432,
-        'HOST': 'ec2-34-238-37-113.compute-1.amazonaws.com',
-        'PASSWORD': '91f703411e77bef63a63e5f22b09b6bbddf0fcd952d78a1bb5ddcaf33fabea67',
-    }
-}
-
-# Local Database
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd8k2bp1mo7irvb',
+#         'USER': 'wbowlfevpnqdyb',
+#         'PORT': 5432,
+#         'HOST': 'ec2-34-238-37-113.compute-1.amazonaws.com',
+#         'PASSWORD': '91f703411e77bef63a63e5f22b09b6bbddf0fcd952d78a1bb5ddcaf33fabea67',
 #     }
 # }
 
+# Local Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
 # Heroku PostgreSQL Database
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 
 # Password validation
